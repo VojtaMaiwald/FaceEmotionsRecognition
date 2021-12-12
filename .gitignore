@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Project exclude paths
+/OpenCV3416/build/
+/OpenCV3416/build/intermediates/javac/debug/classes/
