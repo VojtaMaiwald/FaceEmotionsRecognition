@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FaceEmotionsRecognition"
 include ':app'
+include ':OpenCV3416'
