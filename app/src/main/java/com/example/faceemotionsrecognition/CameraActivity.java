@@ -6,11 +6,13 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -23,6 +25,11 @@ import java.io.IOException;
 
 public class CameraActivity extends Activity implements CameraBridgeViewBase.CvCameraViewListener2 {
     private static final String TAG = "MainActivity";
+
+    TextView fpsMeter;
+    int mFPS;
+    long startTime = 0;
+    long currentTime = 1000;
 
     private Mat mRgba;
     private Mat mGray;
@@ -73,6 +80,9 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        fpsMeter = (TextView) findViewById(R.id.fpsMeter);
+        fpsMeter.setTextColor(Color.WHITE);
     }
 
     @Override
@@ -118,6 +128,19 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         mGray = inputFrame.gray();
 
         mRgba = faceEmotionsRecognition.recognizeImage(mRgba);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (currentTime - startTime >= 1000) {
+                    fpsMeter.setText(String.format("FPS: %d", mFPS));
+                    mFPS = 0;
+                    startTime = System.currentTimeMillis();
+                }
+                currentTime = System.currentTimeMillis();
+                mFPS += 1;
+            }
+        });
 
         return mRgba;
     }
