@@ -10,14 +10,19 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
@@ -35,13 +40,14 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
     private Mat mGray;
     private CameraBridgeViewBase mOpenCvCameraView;
     private FaceEmotionsRecognition faceEmotionsRecognition;
+    private int mCameraIndex = 1;
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCv Is loaded");
-                    mOpenCvCameraView.setCameraIndex(1);
+                    mOpenCvCameraView.setCameraIndex(mCameraIndex);
                     mOpenCvCameraView.enableView();
                 }
                 default: {
@@ -83,6 +89,13 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
 
         fpsMeter = (TextView) findViewById(R.id.fpsMeter);
         fpsMeter.setTextColor(Color.WHITE);
+
+        ((Button) findViewById(R.id.swapCameraBtn)).setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swapCamera();
+            }
+        });
     }
 
     @Override
@@ -127,21 +140,30 @@ public class CameraActivity extends Activity implements CameraBridgeViewBase.CvC
         mRgba = inputFrame.rgba();
         mGray = inputFrame.gray();
 
+        if (mCameraIndex == 0) {
+            Core.flip(mRgba, mRgba, -1);
+            Core.flip(mRgba, mRgba, 0);
+        }
+
         mRgba = faceEmotionsRecognition.recognizeImage(mRgba);
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (currentTime - startTime >= 1000) {
-                    fpsMeter.setText(String.format("FPS: %d", mFPS));
-                    mFPS = 0;
-                    startTime = System.currentTimeMillis();
-                }
-                currentTime = System.currentTimeMillis();
-                mFPS += 1;
+        runOnUiThread(() -> {
+            if (currentTime - startTime >= 1000) {
+                fpsMeter.setText(String.format("FPS: %d", mFPS));
+                mFPS = 0;
+                startTime = System.currentTimeMillis();
             }
+            currentTime = System.currentTimeMillis();
+            mFPS += 1;
         });
 
         return mRgba;
+    }
+
+    private void swapCamera() {
+        mCameraIndex = mCameraIndex^1; //bitwise not operation to flip 1 to 0 and vice versa
+        mOpenCvCameraView.disableView();
+        mOpenCvCameraView.setCameraIndex(mCameraIndex);
+        mOpenCvCameraView.enableView();
     }
 }

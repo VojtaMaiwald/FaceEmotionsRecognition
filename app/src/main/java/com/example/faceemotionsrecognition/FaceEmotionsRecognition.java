@@ -110,7 +110,6 @@ public class FaceEmotionsRecognition {
             Imgproc.putText(image, emotionString, new Point((int)rect.tl().x + 10, (int)rect.tl().y + 45), 1, 3.5f, new Scalar(0, 255, 0, 255), 2);
         }
 
-        //Core.flip(image.t(), image, 0);
         return image;
     }
 
