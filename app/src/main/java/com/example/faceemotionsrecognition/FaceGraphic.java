@@ -130,7 +130,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
               textWidth,
               idPaints[colorID].measureText(
                   String.format(
-                      Locale.US, "Left eye open: %.2f", face.getLeftEyeOpenProbability())));
+                      Locale.US, "Right eye open: %.2f", face.getLeftEyeOpenProbability())));
     }
     if (face.getRightEyeOpenProbability() != null) {
       yLabelOffset -= lineHeight;
@@ -139,7 +139,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
               textWidth,
               idPaints[colorID].measureText(
                   String.format(
-                      Locale.US, "Right eye open: %.2f", face.getRightEyeOpenProbability())));
+                      Locale.US, "Left eye open: %.2f", face.getRightEyeOpenProbability())));
     }
 
     yLabelOffset = yLabelOffset - 3 * lineHeight;
@@ -193,7 +193,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
     FaceLandmark leftEye = face.getLandmark(FaceLandmark.LEFT_EYE);
     if (face.getLeftEyeOpenProbability() != null) {
       canvas.drawText(
-          "Left eye open: " + String.format(Locale.US, "%.2f", face.getLeftEyeOpenProbability()),
+          "Right eye open: " + String.format(Locale.US, "%.2f", face.getLeftEyeOpenProbability()),
           left,
           top + yLabelOffset,
           idPaints[colorID]);
@@ -209,7 +209,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
           translateY(leftEye.getPosition().y) + ID_Y_OFFSET + BOX_STROKE_WIDTH,
           labelPaints[colorID]);
       canvas.drawText(
-          "Left Eye",
+          "Right Eye",
           leftEyeLeft,
           translateY(leftEye.getPosition().y) + ID_Y_OFFSET,
           idPaints[colorID]);
@@ -218,7 +218,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
     FaceLandmark rightEye = face.getLandmark(FaceLandmark.RIGHT_EYE);
     if (face.getRightEyeOpenProbability() != null) {
       canvas.drawText(
-          "Right eye open: " + String.format(Locale.US, "%.2f", face.getRightEyeOpenProbability()),
+          "Left eye open: " + String.format(Locale.US, "%.2f", face.getRightEyeOpenProbability()),
           left,
           top + yLabelOffset,
           idPaints[colorID]);
@@ -234,7 +234,7 @@ public class FaceGraphic extends GraphicOverlay.Graphic {
           translateY(rightEye.getPosition().y) + ID_Y_OFFSET + BOX_STROKE_WIDTH,
           labelPaints[colorID]);
       canvas.drawText(
-          "Right Eye",
+          "Left Eye",
           rightEyeLeft,
           translateY(rightEye.getPosition().y) + ID_Y_OFFSET,
           idPaints[colorID]);

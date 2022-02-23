@@ -4,6 +4,7 @@ import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.widget.Toast;
+
 import androidx.annotation.StringRes;
 
 /** Used to setup face detection for Live Preview Activity and Still Image Activity. */

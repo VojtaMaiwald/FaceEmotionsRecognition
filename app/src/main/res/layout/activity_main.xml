@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,18 +9,17 @@
     <Button
         android:id="@+id/openCVmethodButton"
         android:layout_width="130dp"
-        android:layout_height="70dp"
-        android:text="OpenCV" />
+        android:layout_height="80dp"
+        android:text="@string/opencvButtonName" />
 
     <Button
         android:id="@+id/MLKitmethodButton"
         android:layout_width="130dp"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/openCVmethodButton"
         android:layout_alignStart="@+id/openCVmethodButton"
         android:layout_alignEnd="@+id/openCVmethodButton"
         android:layout_marginBottom="50dp"
-        android:text="MLKit" />
-
+        android:text="@string/mlkitButtonName" />
 
 </RelativeLayout>

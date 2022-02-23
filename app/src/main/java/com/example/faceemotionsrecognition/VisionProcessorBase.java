@@ -61,7 +61,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
   private final ActivityManager activityManager;
   private final Timer fpsTimer = new Timer();
   private final ScopedExecutor executor;
-  private final TemperatureMonitor temperatureMonitor;
 
   // Whether this processor is already shut down
   private boolean isShutdown;
@@ -105,7 +104,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
         },
         /* delay= */ 0,
         /* period= */ 1000);
-    temperatureMonitor = new TemperatureMonitor(context);
   }
 
   // -----------------Code for processing single still image----------------------------------------
@@ -317,7 +315,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
                 activityManager.getMemoryInfo(mi);
                 long availableMegs = mi.availMem / 0x100000L;
                 Log.d(TAG, "Memory available in system: " + availableMegs + " MB");
-                temperatureMonitor.logTemperature();
               }
 
               graphicOverlay.clear();
@@ -358,7 +355,6 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     isShutdown = true;
     resetLatencyStats();
     fpsTimer.cancel();
-    temperatureMonitor.stop();
   }
 
   private void resetLatencyStats() {

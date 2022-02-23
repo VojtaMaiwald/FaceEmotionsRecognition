@@ -120,10 +120,10 @@ public class FaceDetectorProcessor extends VisionProcessorBase<List<Face>> {
       }
       Log.v(
           MANUAL_TESTING_LOG,
-          "face left eye open probability: " + face.getLeftEyeOpenProbability());
+          "face right eye open probability: " + face.getLeftEyeOpenProbability());
       Log.v(
           MANUAL_TESTING_LOG,
-          "face right eye open probability: " + face.getRightEyeOpenProbability());
+          "face left eye open probability: " + face.getRightEyeOpenProbability());
       Log.v(MANUAL_TESTING_LOG, "face smiling probability: " + face.getSmilingProbability());
       Log.v(MANUAL_TESTING_LOG, "face tracking id: " + face.getTrackingId());
     }
