@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private Button camera_button;
+    private Button openCVButton;
+    private Button MLKitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,14 +29,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        startActivity(new Intent(MainActivity.this, CameraActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        //startActivity(new Intent(MainActivity.this, CameraActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-        camera_button = findViewById(R.id.camera_button);
-        camera_button.setOnClickListener(new View.OnClickListener() {
+        openCVButton = findViewById(R.id.openCVmethodButton);
+        openCVButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 startActivity(new Intent(MainActivity.this, CameraActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
+
+        MLKitButton = findViewById(R.id.MLKitmethodButton);
+        MLKitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, CameraXLivePreviewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
     }

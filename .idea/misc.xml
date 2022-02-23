@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/drawable-v24/ic_switch_camera_white_48dp.xml" value="0.37592592592592594" />
         <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/activity_camera.xml" value="0.25" />
-        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/activity_main.xml" value="0.464" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/activity_main.xml" value="0.33177083333333335" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/activity_settings.xml" value="0.2689969604863222" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/activity_vision_camerax_live_preview.xml" value="0.2689969604863222" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/settings_style.xml" value="0.16084093211752787" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/spinner_style.xml" value="0.2689969604863222" />
+        <entry key="..\:/Users/maiwavo/AndroidStudioProjects/FaceEmotionsRecognition/app/src/main/res/layout/toggle_style.xml" value="0.19148936170212766" />
       </map>
     </option>
   </component>
